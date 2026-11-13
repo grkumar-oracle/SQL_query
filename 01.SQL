@@ -153,3 +153,16 @@ group by CHANNEL_ID, promo_id;
 select prod_id, promo_id, avg(UNIT_COST)
 from sh.COSTS
 group by PROD_ID, promo_ID;
+
+-----------------------WHERE + GROUP BY----------------
+
+--31. From SH.SALES, consider only transactions where AMOUNT_SOLD > 500 and calculate total sales amount for each channel.
+select CHANNEL_ID, sum(AMOUNT_SOLD) as Total_sales
+from sh.SALES
+where AMOUNT_SOLD > 500
+group by CHANNEL_ID;
+
+--32. From SH.PRODUCTS, consider only products whose list price is greater than 100 and find the average list price for each product category.
+
+--33. From SH.CUSTOMERS, consider only customers born after 1970 and count them by marital status.
+--34. From SH.PROMOTIONS, consider only promotions whose cost is greater than 500 and calculate the average promotion cost for each promotion category.
