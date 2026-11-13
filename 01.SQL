@@ -126,3 +126,30 @@ group by country_region
 select PROD_ID, avg(UNIT_COST) as Avg_Unit_Cost
 from sh.COSTS
 group by PROD_ID 
+
+-------------------------TWO-LEVEL GROUP BY--------------------------------
+
+--26. Using SH.CUSTOMERS, count customers by gender and marital status.
+select CUST_GENDER, cust_marital_status, count(CUST_FIRST_NAME) as Cust_count
+from sh.CUSTOMERS
+group by CUST_GENDER, CUST_MARITAL_STATUS;
+
+--27. Using SH.PRODUCTS, count products by product category and product subcategory.
+select PROD_CATEGORY, prod_subcategory, count(PROD_NAME) as prod_count
+from sh.PRODUCTS
+group by PROD_CATEGORY, PROD_SUBCATEGORY;
+
+--28. U*sing SH.SALES, calculate total sales amount for each product and channel combination.
+select PROD_ID, CHANNEL_ID, sum(AMOUNT_SOLD) as Total_sales
+from sh.SALES
+group by PROD_ID, CHANNEL_ID;
+
+--29. Using SH.SALES, calculate total quantity sold for each channel and promotion combination.
+select CHANNEL_ID, promo_ID, sum(QUANTITY_SOLD) as Total_Quantity
+from sh.sales
+group by CHANNEL_ID, promo_id;
+
+--30. Using SH.COSTS, find the average unit cost for each product and promotion combination.
+select prod_id, promo_id, avg(UNIT_COST)
+from sh.COSTS
+group by PROD_ID, promo_ID;
