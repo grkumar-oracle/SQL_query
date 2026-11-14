@@ -185,3 +185,35 @@ select prod_id, max(UNIT_PRICE) as Max_Unit_Price
 from sh.COSTS
 where unit_cost > 50
 group by prod_id
+
+-----------------GROUP BY + HAVING--------------------------
+
+--36. Using SH.CUSTOMERS, display marital statuses having more than 100 customers.
+select CUST_MARITAL_STATUS, count(CUST_FIRST_NAME) as Count_Customer
+from sh.CUSTOMERS
+group by CUST_MARITAL_STATUS
+having count(CUST_FIRST_NAME) > 100;
+
+--37. Using SH.PRODUCTS, display product categories whose average list price is greater than 500.
+select PROD_CATEGORY, avg(PROD_LIST_PRICE) as AVG_List_Price
+from sh.PRODUCTS
+group by prod_category
+having avg(prod_list_price) > 500;
+
+--38. Using SH.SALES, display channels whose total sales amount is greater than 100000.
+select CHANNEL_ID, sum(AMOUNT_SOLD) as Total_Sales_Amount
+from sh.SALES
+group by CHANNEL_ID
+having sum(AMOUNT_SOLD) > 100000;
+
+--39. Using SH.PROMOTIONS, display promotion categories whose average promotion cost is greater than 1000.
+select PROMO_CATEGORY, avg(PROMO_COST) as AVG_Promo_Cost
+from sh.PROMOTIONS
+group by PROMO_CATEGORY
+having avg(PROMO_COST) > 1000;
+
+--40. Using SH.COSTS, display products whose average unit price is greater than 500.
+select PROD_ID, avg(UNIT_COST) as AVG_Unit_Cost
+from sh.costs
+group by PROD_ID
+having avg(UNIT_COST) > 500
