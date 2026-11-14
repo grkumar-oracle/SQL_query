@@ -179,3 +179,9 @@ select PROMO_CATEGORY, avg(PROMO_COST) as AVG_Promo_Cost
 from sh.PROMOTIONS
 where promo_cost > 500
 group by promo_category
+
+--35. From SH.COSTS, consider records where unit cost is greater than 50 and calculate the maximum unit price for each product.
+select prod_id, max(UNIT_PRICE) as Max_Unit_Price
+from sh.COSTS
+where unit_cost > 50
+group by prod_id
