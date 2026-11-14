@@ -163,6 +163,19 @@ where AMOUNT_SOLD > 500
 group by CHANNEL_ID;
 
 --32. From SH.PRODUCTS, consider only products whose list price is greater than 100 and find the average list price for each product category.
+select PROD_CATEGORY, avg(PROD_LIST_PRICE) as AVG_list_price
+from sh.PRODUCTS
+where PROD_LIST_PRICE > 100
+group by PROD_CATEGORY;
 
 --33. From SH.CUSTOMERS, consider only customers born after 1970 and count them by marital status.
+select cust_marital_status, count(CUST_FIRST_NAME) as Count_customer
+from sh.CUSTOMERS
+where CUST_YEAR_OF_BIRTH > 1970
+group by CUST_MARITAL_STATUS;
+
 --34. From SH.PROMOTIONS, consider only promotions whose cost is greater than 500 and calculate the average promotion cost for each promotion category.
+select PROMO_CATEGORY, avg(PROMO_COST) as AVG_Promo_Cost
+from sh.PROMOTIONS
+where promo_cost > 500
+group by promo_category
