@@ -1,0 +1,83 @@
+-- Rank employees based on salary
+-- Rank got skipped (same salary has same rank but next rank is missed)
+select 
+    EMPLOYEE_ID,
+    FIRST_NAME,
+    salary,
+    rank() over (order by SALARY desc) as Salary_Rank
+from hr.employees
+********************************************************************************
+-- Rank employees based on Salary
+-- for every department
+select 
+    EMPLOYEE_ID,
+    FIRST_NAME,
+    department_id,
+    SALARY,
+    rank() over (
+            partition  by department_id
+                order by salary desc
+    ) as dept_salary_rank
+from hr.employees
+********************************************************************************
+-- top 5 salary employee details
+select *
+from (
+    select 
+        EMPLOYEE_ID,
+        FIRST_NAME,
+        SALARY,
+        row_number() over (order by salary desc) as RN 
+        from Hr.employees
+)
+where RN <=5
+********************************************************************************
+-- use dense_rank in order not to skip the next rank post repetition
+select 
+    EMPLOYEE_ID,
+    FIRST_NAME,
+    salary,
+    dense_rank() over (order by SALARY desc) as Salary_Rank
+from hr.employees
+********************************************************************************
+--Top 3 ranks from all departments based on highest Salary
+select * 
+from (
+    select 
+        EMPLOYEE_ID,
+        FIRST_NAME,
+        salary,
+        DEPARTMENT_ID,
+        dense_rank() over (partition by department_id order by SALARY desc) as Salary_Rank
+        from Hr.employees
+)
+where Salary_Rank <=3
+********************************************************************************
+--top 10 high paid salary using rownum
+select
+    EMPLOYEE_ID,
+    FIRST_NAME,
+    salary
+    from (
+        select 
+            EMPLOYEE_ID,
+            FIRST_NAME,
+            Salary
+            from hr.employees
+            order by salary desc
+    )
+    where rownum <= 10
+********************************************************************************
+    --Assigning row number for each department based on highsalary
+        select
+    EMPLOYEE_ID,
+    FIRST_NAME,
+    department_id,
+    salary,
+    row_number() over (
+        partition by department_id 
+        order by salary desc
+    ) as dept_row_number
+    from hr.employees
+
+    
