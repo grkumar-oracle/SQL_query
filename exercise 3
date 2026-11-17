@@ -1,0 +1,15 @@
+-- to show the hire year only from date column
+SELECT 
+    EMPLOYEE_id,
+    first_name,
+    hire_date,
+    to_char(hire_date, 'YYYY') as Joining_year
+from hr.EMPLOYEES
+
+-- to get hire month
+select 
+    employee_id,
+    first_name,
+    hire_date,
+    to_char(hire_date, 'MM') as hire_month
+from hr.EMPLOYEES
