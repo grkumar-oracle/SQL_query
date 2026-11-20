@@ -13,3 +13,23 @@ select
     hire_date,
     to_char(hire_date, 'MM') as hire_month
 from hr.EMPLOYEES
+**************************************************************************
+-- date functions
+select FIRST_NAME, HIRE_DATE, sysdate, round(sysdate-HIRE_DATE) as exp_days
+from Hr.EMPLOYEES
+
+select systimestamp from dual
+
+select sysdate, add_months(sysdate,3) from dual
+
+select employee_id, FIRST_NAME, HIRE_DATE, add_months(HIRE_DATE, 6) probation_period 
+from hr.EMPLOYEES
+
+select FIRST_NAME, HIRE_DATE, floor(months_between(sysdate, HIRE_DATE)) as Months_worked
+from hr.EMPLOYEES
+
+select sysdate, last_day(sysdate) from dual
+
+select sysdate, next_day(sysdate,'Monday') from dual
+
+select sysdate, next_day(sysdate,2) from dual
